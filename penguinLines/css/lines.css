@@ -1,0 +1,55 @@
+#tooltip.hidden
+{
+    display:none;
+}
+
+#tooltip
+{
+    position:absolute;
+    width:300px;
+    height:auto;
+    padding:10px;
+    background-color:white;
+    border-radius:10px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    pointer-events:none;
+}
+
+path
+{
+    stroke:gray;
+    fill:none;
+    stroke-width:3;
+}
+
+.selected path
+{
+    stroke:gold;
+    stroke-width:6;
+}
+
+.off,.fade
+{
+    opacity:.1;
+}
+
+.on("mouseover",function(penguins)
+{   
+    if(! d3.select(this).classed("off"))
+    {
+        d3.selectAll(".line")
+            .classed("fade",true);
+            
+        d3.select(this)
+            .classed("fade",false)
+            .raise(); //move to top
+    }
+})
+.on("mouseout",function(penguins)
+{
+    if(! d3.select(this).classed("off"))
+    {
+        d3.selectAll(".line")
+        .classed("fade",false);
+    }
+})
